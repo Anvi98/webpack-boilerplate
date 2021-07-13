@@ -7,12 +7,27 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Development',
+      template: './src/index.html'
     }),
   ],
 
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    port: 8080,
+    open: true,
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
 };
